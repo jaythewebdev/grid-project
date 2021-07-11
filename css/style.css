@@ -1,0 +1,435 @@
+/* 
+  =============
+  Variables
+  =============
+*/
+:root {
+  --primaryColor: #f15025;
+  --mainBlack: #222;
+  --mainWhite: #fff;
+  --offWhite: #f7f7f7;
+  --darkGrey: #afafaf;
+  --mainTransition: all 0.3s linear;
+  --mainSpacing: 0.2rem;
+}
+/* 
+  =============
+  Global Styles
+  =============
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Fira Code", monospace;
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+  line-height: 1.5;
+}
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 1.25rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  margin-bottom: 0;
+}
+p {
+  font-weight: 300;
+  font-size: 0.7rem;
+  line-height: 2;
+}
+/* button */
+.btn {
+  display: inline-block;
+  text-transform: capitalize;
+  background: transparent;
+  color: var(--primaryColor);
+  padding: 0.575rem 0.78rem;
+  border: 3px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  margin: 3rem;
+}
+.btn:hover {
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+}
+
+/* general section */
+.general-section {
+  margin: 4rem 0;
+}
+
+.section-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* end general */
+
+/* navbar */
+.navbar {
+  background: var(--darkGrey);
+  padding: 0 2rem;
+}
+.nav-links {
+  list-style-type: none;
+}
+/* .nav-link {
+  background-color: yellow;
+} */
+.navhtmllinks {
+  text-transform: capitalize;
+  display: inline-block;
+  color: var(--primaryColor);
+  letter-spacing: var(--mainSpacing);
+  transition: var(--mainTransition);
+  /* background-color: violet; */
+  padding: 1rem 0;
+}
+
+.navhtmllinks:hover {
+  color: var(--mainBlack);
+}
+
+/* responsive */
+
+@media screen and (min-width: 992px) {
+  .nav-link {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* if we use flex */
+    /* display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; */
+  }
+  .nav-links {
+    text-align: center;
+    /* if we use flex */
+    /* flex: 1 0 auto; */
+  }
+}
+
+/* hero */
+.hero {
+  min-height: 100vh;
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+  display: grid;
+  /* grid-template-columns: 30rem; */
+  justify-items: center;
+  align-items: center;
+}
+.hero-banner {
+  padding: 0 3rem;
+}
+.hero-banner p {
+  width: 80%;
+  max-width: 38rem;
+  font-size: 1rem;
+}
+/* @media screen and (max-width: 600px) {
+  .hero-banner {
+    padding: 0 3rem;
+  }
+} */
+@media screen and (min-width: 768px) {
+  .hero {
+    background: linear-gradient(rgb(241, 80, 37, 0.75), rgba(0, 0, 0, 0.75)),
+      url("../images/bg2.jpg") center/cover fixed no-repeat;
+  }
+  .hero-banner h1 {
+    font-size: 4rem;
+  }
+}
+/* end hero */
+
+/* cards */
+
+.section-centre {
+  width: 80vw;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.cards {
+  background: var(--mainWhite);
+  margin-bottom: 3rem;
+  border: 1px solid var(--darkGrey);
+}
+.cards-img-text {
+  padding: 1rem;
+}
+.cards-footer {
+  background: var(--darkGrey);
+  padding: 0.65rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+.cards-footer i {
+  color: var(--primaryColor);
+}
+
+/* responsive using media queries */
+/* alternatively we can achieve this using minmax() */
+
+/* @media screen and (min-width: 768px) {
+  .cards-centre {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-column-gap: 2rem;
+  }
+}
+@media screen and (min-width: 1170px) {
+  .cards-centre {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+/* if we get data from an API , then we aren't sure whether the data infos will all be in same size , if one card has more card info than others it'll span all way down making all other cards look worst , to cover this issue we can MAKE OUR EACH CARD A GRID WITH IMG AND FOOTER SET TO AUTO AND AND OUR INFO IS SET TO 1fr .  */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* alternate method */
+.cards-centre {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
+  /*calculation for min size-- the max width is 1170px if we want 3 column layout ther will be 2 gaps if each gap is 2rem then 2*16px=32px now we have 2 gaps so there  will be 64px now we have to calculate the size of the cards. (1170 -64 )/3 =386px .this will be width of  our each card . this is how we create layouts without media queries  */
+  /*  */
+  grid-column-gap: 2rem;
+}
+
+/* end cards */
+
+/* tiles */
+.tiles-centre {
+  width: 90vw;
+  max-width: 1170px;
+  margin: 0 auto;
+  display: grid;
+  grid-row-gap: 2rem;
+}
+/* .tile-img {
+  margin-bottom: 2rem;
+} */
+
+@media screen and (min-width: 768px) {
+  .tiles-centre {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  .tiles-centre {
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-column-gap: 2rem; */
+  }
+}
+@media screen and (min-width: 1120px) {
+  .tiles-centre {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 200px);
+
+    grid-template-areas:
+      "a a a b"
+      "a a a c"
+      "d d d d"
+      "e f f f"
+      "e g h i";
+  }
+  .tile-img {
+    height: 100%;
+  }
+  .img1 {
+    grid-area: a;
+  }
+  .img2 {
+    grid-area: b;
+  }
+  .img3 {
+    grid-area: c;
+  }
+  .img4 {
+    grid-area: g;
+  }
+  .img5 {
+    grid-area: e;
+  }
+  .img6 {
+    grid-area: f;
+  }
+  .img7 {
+    grid-area: d;
+  }
+  .img8 {
+    grid-area: h;
+  }
+  .img9 {
+    grid-area: i;
+  }
+}
+
+/* end tiles */
+
+/* layout */
+.layout-title {
+  margin-bottom: 0;
+  padding: 0.5rem;
+  background: var(--primaryColor);
+  color: var(--mainWhite);
+}
+.layoutnav {
+  background: var(--darkGrey);
+}
+.layout-links {
+  list-style-type: none;
+}
+.layoutlinks {
+  display: inline-block;
+  text-transform: capitalize;
+  color: var(--mainBlack);
+  letter-spacing: var(--mainSpacing);
+  padding: 1rem;
+  font-size: 1.2rem;
+  transition: var(--mainTransition);
+}
+.layoutlinks:hover {
+  color: var(--mainWhite);
+}
+@media screen and (min-width: 768px) {
+  .layoutlink {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+}
+
+.layout-text {
+  padding: 2rem;
+}
+.layout-text p {
+  font-size: 1rem;
+}
+
+.section-footer {
+  background: var(--primaryColor);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+.section-footer i {
+  color: var(--mainWhite);
+  font-size: 1.3rem;
+}
+
+.footer {
+  background: var(--mainBlack);
+  color: var(--mainWhite);
+  padding: 0.5rem 0;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  text-align: center;
+}
+.footer p {
+  font-size: 1.2rem;
+}
+
+.main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+
+@media screen and (min-width: 992px) {
+  /* XXX USING GRID LINES XXX */
+  .main {
+    grid-template-columns: [start]200px [column-1-end]1fr [column-2-end]50px [end];
+    grid-template-rows: [start] auto[row-1-end] 1fr[row-2-end] auto[end];
+  }
+  .layout-title {
+    grid-column: start/end;
+    grid-row: start/row-1-end;
+  }
+  .layout-nav {
+    grid-column: start/column-1-end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .layout-text {
+    grid-column: column-1-end/column-2-end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .section-footer {
+    grid-column: column-2-end/end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .footer {
+    grid-column: start/end;
+    grid-row: row-2-end/end;
+  }
+
+  /*XXX above can also be done using grid area XXX */
+  /* .main {
+    grid-template-columns: 200px 1fr 50px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "a a a"
+      "b c d"
+      "e e e";
+  }
+  .layout-title {
+    grid-area: a;
+  }
+  .layout-nav {
+    grid-area: b;
+  }
+  .layout-text {
+    grid-area: c;
+  }
+  .section-footer {
+    grid-area: d;
+  }
+  .footer {
+    grid-area: e;
+  } */
+
+  .layoutlink {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    min-height: 100%;
+  }
+
+  .section-footer {
+    background: var(--primaryColor);
+    grid-template-columns: 1fr;
+    align-items: center;
+    min-height: 100%;
+  }
+}
